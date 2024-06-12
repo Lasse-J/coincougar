@@ -169,7 +169,7 @@ footer {
   font-weight: 600;
 }
 
-.overview__account,
+.overview__accounts,
 .overview__tracked,
 .overview__total,
 .overview__change {
@@ -186,7 +186,7 @@ footer {
   position: relative;
 }
 
-.overview__account button {
+.overview__accounts button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -235,7 +235,7 @@ footer {
   transform: translate(-50%, -50%);
 }
 
-.overview__account button:hover,
+.overview__accounts button:hover,
 .overview__tracked button:hover,
 .popup__content button:hover {
   background-color: var(--clr-orange);
@@ -411,7 +411,7 @@ footer {
 /* Add (adding tokens popup) */
 
 .add,
-.account {
+.accounts {
   max-height: 300px;
 
   display: flex;
@@ -420,7 +420,7 @@ footer {
   flex-direction: column;
 }
 
-.account {
+.accounts {
   max-width: 400px;
 }
 
@@ -428,7 +428,7 @@ footer {
   max-width: 350px;
 }
 
-.account form,
+.accounts form,
 .add form {
   display: flex;
   justify-content: top;
@@ -438,7 +438,7 @@ footer {
   margin-top: 1em;
 }
 
-.account form label,
+.accounts form label,
 .add form label {
   font-size: clamp(1em, 3vw, 1.20em);
   font-weight: 300;
@@ -446,7 +446,7 @@ footer {
   margin-bottom: 1em;
 }
 
-.account form input[type="text"],
+.accounts form input[type="text"],
 .add form select {
   height: 40px;
   padding: 1em;
@@ -460,7 +460,7 @@ footer {
   margin-bottom: 1em;
 }
 
-.account form input[type="text"] {
+.accounts form input[type="text"] {
   width: 350px;
 }
 
@@ -471,7 +471,7 @@ footer {
   color: var(--clr-text-light);
 }
 
-.account form input[type="submit"],
+.accounts form input[type="submit"],
 .add form input[type="submit"] {
   background-color: var(--clr-blue);
   color: var(--clr-text-light);
@@ -489,7 +489,7 @@ footer {
   transition: 250ms ease all;
 }
 
-.account form input[type="submit"]:hover,
+.accounts form input[type="submit"]:hover,
 .add form input[type="submit"]:hover {
   background-color: var(--clr-orange);
 }
