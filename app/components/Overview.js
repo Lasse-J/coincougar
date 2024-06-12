@@ -1,18 +1,31 @@
+"use client"
+import { useState } from 'react'
+
 import Image from 'next/image'
+
+// Components
+import Accounts from './Accounts'
 
 // Images
 import up from '../assets/up.svg'
 import down from '../assets/down.svg'
 import add from '../assets/add.svg'
 
-const Overview = () => {
+const Overview = ({ trackedAccounts, setTrackedAccounts }) => {
+
+	const [isAccountsModalOpen, setIsAccountsModalOpen] = useState(false)
+
+	const accountsModalHandler = () => {
+		setIsAccountsModalOpen(true)
+	}
+
 	return(
 		<div className="overview">
 
 			<div className="overview__tracked">
 				<h3>Accounts</h3>
-				<p>0</p>
-				<button>
+				<p>{trackedAccounts.length}</p>
+				<button onClick={accountsModalHandler}>
 					<Image
 						src={add}
 						width={20}
@@ -20,6 +33,7 @@ const Overview = () => {
 						alt="Add account"
 					/>
 				</button>
+				{console.log(trackedAccounts)}
 			</div>
 
 			<div className="overview__tracked">
@@ -66,6 +80,13 @@ const Overview = () => {
 				</p>
 			</div>
 
+			{isAccountsModalOpen && 
+				<Accounts
+					setIsAccountsModalOpen={setIsAccountsModalOpen}
+					trackedAccounts={trackedAccounts}
+					setTrackedAccounts={setTrackedAccounts}
+				/>
+			}
 
 		</div>
 	)
