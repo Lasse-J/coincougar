@@ -1,10 +1,12 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>CoinCougar project created!</h1>
+    <main>
+      <h2>Portfolio Overview</h2>
+
+      <div className="details">
+        <div className="divider"></div>
+
+      </div>
     </main>
   )
 }
