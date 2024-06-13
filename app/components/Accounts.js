@@ -18,7 +18,7 @@ const Accounts = ({ setIsAccountsModalOpen, trackedAccounts, setTrackedAccounts 
 	return(
 		<div className="popup">
 			<div className="popup__content accounts">
-				<h3>Add Account</h3>
+				<h3>Add Accounts</h3>
 
 				<button onClick={closeHandler}>
 					<Image
