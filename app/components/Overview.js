@@ -43,7 +43,6 @@ const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens,
 						alt="Add account"
 					/>
 				</button>
-				{console.log(trackedAccounts)}
 			</div>
 
 			<div className="overview__tracked">
