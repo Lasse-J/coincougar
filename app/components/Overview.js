@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Image from 'next/image'
 
@@ -12,7 +12,8 @@ import up from '../assets/up.svg'
 import down from '../assets/down.svg'
 import add from '../assets/add.svg'
 
-const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens, setTrackedTokens }) => {
+const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens, setTrackedTokens, tokens }) => {
+	const [value, setValue] = useState(0)
 
 	const [isAccountsModalOpen, setIsAccountsModalOpen] = useState(false)
 	const [isAddTokensModalOpen, setIsAddTokensModalOpen] = useState(false)	
@@ -29,9 +30,26 @@ const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens,
 		}
 	}
 
+	const calculateValue = () => {
+		const total = tokens.reduce((acc, token) => {
+			return acc + token.value;
+		}, 0)
+
+		console.log(total)
+
+		setValue(total)
+	}
+
+	useEffect(() => {
+		if (tokens.length === 0) {
+			setValue(0)
+		} else {
+			calculateValue()
+		}
+	})
+
 	return(
 		<div className="overview">
-
 			<div className="overview__tracked">
 				<h3>Accounts</h3>
 				<p>{trackedAccounts.length}</p>
@@ -73,7 +91,7 @@ const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens,
 
 			<div className="overview__total">
 				<h3>Total Value</h3>
-				<p>$0.00</p>
+				<p>{value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
 			</div>
 
 			<div className="overview__change">

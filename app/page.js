@@ -15,6 +15,7 @@ export default function Home() {
   const [trackedTokens, setTrackedTokens] = useState([])
 
   const [markets, setMarkets] = useState(null)
+  const [tokens, setTokens] = useState([])
 
   const getMarkets = async () => {
     // TODO: Make API call to fetch market data FROM ALL BLOCKCHAINS
@@ -53,8 +54,8 @@ export default function Home() {
       value: market.current_price * balance
     }
 
-    console.log("token", token)
-
+    // Save the token info to tokens array to pass down
+    setTokens([...tokens, token])
   }
 
   useEffect(() => {
@@ -77,6 +78,7 @@ export default function Home() {
         markets={markets}
         trackedTokens={trackedTokens}
         setTrackedTokens={setTrackedTokens}
+        tokens={tokens}
       />
 
       <div className="details">
