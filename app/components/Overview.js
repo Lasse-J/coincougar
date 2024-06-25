@@ -14,6 +14,7 @@ import add from '../assets/add.svg'
 
 const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens, setTrackedTokens, tokens }) => {
 	const [value, setValue] = useState(0)
+	const [percentageChange, setPercentageChange] = useState(0)
 
 	const [isAccountsModalOpen, setIsAccountsModalOpen] = useState(false)
 	const [isAddTokensModalOpen, setIsAddTokensModalOpen] = useState(false)	
@@ -35,16 +36,32 @@ const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens,
 			return acc + token.value;
 		}, 0)
 
-		console.log(total)
-
 		setValue(total)
+	}
+
+	const calculatePercentageChange = () => {
+		let total = 0
+
+		for(var i = 0; i < tokens.length; i++) {
+			if(tokens[i].balance === 0) { continue }
+
+			const pastValue = (tokens[i].market.current_price - tokens[i].market.price_change_24h) * tokens[i].balance
+			const currentValue = tokens[i].value
+			const change = ((currentValue - pastValue) / pastValue) * 100
+
+			total += change
+		}
+
+		setPercentageChange(total)
 	}
 
 	useEffect(() => {
 		if (tokens.length === 0) {
 			setValue(0)
+			setPercentageChange(0)
 		} else {
 			calculateValue()
+			calculatePercentageChange()
 		}
 	})
 
@@ -98,12 +115,12 @@ const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens,
 			<h3>Change</h3>
 				<p>
 					<Image
-						src={up}
+						src={percentageChange < 0 ? down : up}
 						width={15}
 						height={15}
 						alt="Change direction"
 					/>
-					<span className="green">0.00%</span>
+					<span className={percentageChange < 0 ? 'red' : 'green'}>{percentageChange.toFixed(2)}%</span>
 				</p>
 			</div>
 
