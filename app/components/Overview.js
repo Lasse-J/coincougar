@@ -112,7 +112,7 @@ const Overview = ({ trackedAccounts, setTrackedAccounts, markets, trackedTokens,
 			</div>
 
 			<div className="overview__change">
-			<h3>Change</h3>
+			<h3>Last 24h</h3>
 				<p>
 					<Image
 						src={percentageChange < 0 ? down : up}
